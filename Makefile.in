@@ -1,0 +1,18 @@
+PREFIX ?= $(PWD)
+DESTDIR = $(PREFIX)/out
+CROSS_COMPILE ?=
+
+CC = $(CROSS_COMPILE)gcc
+CPP = $(CROSS_COMPILE)gcc -E
+AR = $(CROSS_COMPILE)ar
+LD = $(CROSS_COMPILE)ld
+NM = $(CROSS_COMPILE)nm
+STRIP = $(CROSS_COMPILE)strip
+
+INCLUDES = \
+	-I$(PWD) \
+	-I$(PWD)/include
+
+CFLAGS = -O2 -Wall -fPIC -Wno-int-to-pointer-cast $(INCLUDES)
+LDFLAGS = -L$(PWD)/lib
+LIBS = -laes-128-cbc -static
